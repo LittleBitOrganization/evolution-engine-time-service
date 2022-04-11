@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+using UnityEngine;
 using UnityEngine.Networking;
 
 namespace LittleBit.Modules.TimeServiceModule
@@ -15,23 +14,29 @@ namespace LittleBit.Modules.TimeServiceModule
             using var request = UnityWebRequest.Get(URL);
 
             var timeBeforeRequest = TimeSpan.FromTicks(DateTime.UtcNow.Ticks);
-            
+
             yield return request.SendWebRequest();
-            
+
             if (request.result != UnityWebRequest.Result.Success)
             {
                 error?.Invoke();
                 yield break;
             }
-            
-            var json = JsonConvert.DeserializeObject<Dictionary<string, object>>(request.downloadHandler.text);
+
+            var json = JsonUtility.FromJson<ServerData>(request.downloadHandler.text);
             
             var timeAfterRequest = TimeSpan.FromTicks(DateTime.UtcNow.Ticks);
             var requestDuration = timeAfterRequest - timeBeforeRequest;
             
-            var serverTime = DateTime.FromFileTimeUtc(long.Parse(json["currentFileTime"].ToString()));
-            
+            var serverTime = DateTime.FromFileTimeUtc(json.currentFileTime);
+
             callback?.Invoke(serverTime - requestDuration);
+        }
+
+        [Serializable]
+        private class ServerData
+        {
+            public long currentFileTime;
         }
     }
 }
