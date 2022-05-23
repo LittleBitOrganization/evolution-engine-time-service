@@ -3,6 +3,7 @@ using System.Collections;
 using LittleBit.Modules.CoreModule;
 using LittleBit.Modules.CoreModule.Tools;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace LittleBit.Modules.TimeServiceModule
 {
@@ -22,6 +23,10 @@ namespace LittleBit.Modules.TimeServiceModule
 
         public event Action<long> OnTimeInitialized;
  
+        [Preserve]
+        public TimeService()
+        {
+        }        
         public TimeService(IDataStorageService dataStorageService, ICoroutineRunner coroutineRunner,
             FirstPlayChecker firstPlayChecker, ILifecycle appLifecycle)
         {
