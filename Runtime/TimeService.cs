@@ -23,10 +23,7 @@ namespace LittleBit.Modules.TimeServiceModule
 
         public event Action<long> OnTimeInitialized;
  
-        [Preserve]
-        public TimeService()
-        {
-        }        
+        [Preserve]              
         public TimeService(IDataStorageService dataStorageService, ICoroutineRunner coroutineRunner,
             FirstPlayChecker firstPlayChecker, ILifecycle appLifecycle)
         {
