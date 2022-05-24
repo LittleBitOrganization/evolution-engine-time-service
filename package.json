@@ -1,7 +1,7 @@
 {
   "name": "com.littlebitgames.timeservicemodule",
   "displayName": "Time Service Module",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "unity": "2021.1",
   "unityRelease": "6f1",
   "description": "This module provides you with LittleBitGames Core Module",
