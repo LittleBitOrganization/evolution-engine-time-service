@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using LittleBit.Modules.SequenceLogicModule;
 
 namespace LittleBit.Modules.TimeServiceModule
 {
