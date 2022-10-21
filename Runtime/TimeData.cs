@@ -1,5 +1,4 @@
 using System;
-//using Facebook.Unity;
 using LittleBit.Modules.CoreModule;
 using LittleBit.Modules.CoreModule.Tools;
 
@@ -33,8 +32,6 @@ namespace LittleBit.Modules.TimeServiceModule
         {
             WriteDateTime(TimeOpenAppName, timeOpenApp);
             WriteDateTime(CurrentTimeName, currentTime);
-            // this.timeOpenApp = timeOpenApp;
-            // this.currentTime = currentTime;
         }
 
         public void WriteDateTime(string name, DateTime dateTime)

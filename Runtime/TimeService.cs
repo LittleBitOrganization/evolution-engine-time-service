@@ -37,10 +37,6 @@ namespace LittleBit.Modules.TimeServiceModule
             _coroutineRunner = coroutineRunner;
             _dataStorageService = dataStorageService;
             _coroutineRunner.StartCoroutine(Interval(10, SyncTime));
-            
-
-            // SubscribeToAppLifecycle();
-
             InitTime();
         }
 
