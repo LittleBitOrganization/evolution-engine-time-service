@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using DG.Tweening;
 using LittleBit.Modules.SequenceLogicModule;
 
@@ -9,6 +9,7 @@ namespace LittleBit.Modules.TimeServiceModule
         private readonly ITimeService _timeService;
        
         private readonly double _duration;
+        private readonly bool _ignoreTimeScale;
 
         public Time StartTime { get; private set; }
         
@@ -20,12 +21,13 @@ namespace LittleBit.Modules.TimeServiceModule
         private DateTime _endTime;
 
 
-        public TimeTweener(ITimeService timeService, Time startTime, double duration)
+        public TimeTweener(ITimeService timeService, Time startTime, double duration, bool ignoreTimeScale = false)
         {
             StartTime = startTime;
             
             _timeService = timeService;
             _duration = duration;
+            _ignoreTimeScale = ignoreTimeScale;
             Init();
             TweenerData = new TimeTweenerData(duration, 0);
         }
@@ -91,6 +93,7 @@ namespace LittleBit.Modules.TimeServiceModule
                         OnUpdate?.Invoke(TweenerData);
                     })
                 .SetEase(Ease.Linear)
+                .SetUpdate(_ignoreTimeScale)
                 .OnComplete(() => OnComplete?.Invoke());
         }
 
